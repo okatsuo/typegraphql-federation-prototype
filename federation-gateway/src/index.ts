@@ -9,7 +9,9 @@ type AppOption = {
 class App {
   static async start ({ port }: AppOption) {
     const gateway = new ApolloGateway({
-      serviceList: []
+      serviceList: [{
+        name: 'User', url: 'http://localhost:4001/'
+      }]
     })
 
     const { executor, schema } = await gateway.load()
