@@ -1,5 +1,5 @@
 import { Directive, Field, ObjectType, Root } from 'type-graphql'
-import { User } from '../user/User'
+import { User } from './user/User'
 import { Post } from './Post'
 
 @ObjectType({ description: 'Post' })

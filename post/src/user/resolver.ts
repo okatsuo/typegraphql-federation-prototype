@@ -1,9 +1,9 @@
 import { Resolver, FieldResolver, Root } from 'type-graphql'
 
 import { User } from './User'
-import { PostSchema } from '../post/PostSchema'
-import { posts } from '../post/data'
-import { Post } from '../post/Post'
+import { PostSchema } from '../PostSchema'
+import { posts } from '../data'
+import { Post } from '../Post'
 
 @Resolver(() => User)
 export default class UserPostsResolver {
