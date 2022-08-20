@@ -1,10 +1,11 @@
 import 'reflect-metadata'
 import { buildFederatedSchema } from './helpers/buildFederatedSchema'
-import { Resolver, Query, ObjectType, Field } from 'type-graphql'
+import { Resolver, Query, ObjectType, Field, Directive } from 'type-graphql'
 import { ApolloServer } from 'apollo-server'
 import { users } from './data'
 import { ResolveUserReference } from './userReference'
 
+@Directive('@key(fields: "id")')
 @ObjectType({ description: 'User' })
 export class User {
   @Field({ description: 'User ID' })
@@ -32,7 +33,7 @@ class App {
       resolvers: [UserResolver],
       orphanedTypes: [User]
     }, {
-      user: { __resolveReference: ResolveUserReference.resolve }
+      User: { __resolveReference: ResolveUserReference.resolve }
     })
 
     const server = new ApolloServer({ schema, tracing: false, playground: true })
