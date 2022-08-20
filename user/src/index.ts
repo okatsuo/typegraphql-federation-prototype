@@ -5,18 +5,18 @@ import { ApolloServer } from 'apollo-server'
 import { users } from './data'
 import { ResolveUserReference } from './userReference'
 
-@ObjectType()
+@ObjectType({ description: 'User' })
 export class User {
-  @Field()
+  @Field({ description: 'User ID' })
   id: string
 
-  @Field()
+  @Field({ description: 'User name' })
   name: string
 }
 
 @Resolver(() => User)
 export class UserResolver {
-  @Query(() => [User])
+  @Query(() => [User], { description: 'Get all users' })
   getUser (): User[] {
     return users
   }
